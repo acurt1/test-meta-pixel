@@ -25,10 +25,21 @@
     const currentPageUrl = window.location.pathname;
     window.onload = () => {
       console.log('current page', currentPageUrl)
-      const homeButton = document.getElementById('homeButton');
-      homeButton.addEventListener('click', (event) => {
+      const selfButton = document.getElementById('selfButton');
+      selfButton.addEventListener('click', (event) => {
         event.preventDefault();
         const destinationURL = event.target.getAttribute('href');
+        console.log('destination url', destinationURL)
+        if (!qualityVisitFired && destinationURL != currentPageUrl) {
+          fbq('trackCustom', 'Quality Site Visit');
+          qualityVisitFired = true;
+        }
+      });
+      const eventButton = document.getElementById('eventButton');
+      eventButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const destinationURL = event.target.getAttribute('href');
+        console.log('destination url', destinationURL)
         if (!qualityVisitFired && destinationURL != currentPageUrl) {
           fbq('trackCustom', 'Quality Site Visit');
           qualityVisitFired = true;
@@ -48,8 +59,9 @@
 </head>
 
 <body>
-  <h1>Meta Pixel Test</h1>
-  <a id="homeButton" href="/">Home Updated1</a>
+  <h1>Event 1</h1>
+  <a id="selfButton" href="/event1">Self</a>
+  <a id="eventButton" href="/event2">Event 2</a>
 </body>
 
 </html>
