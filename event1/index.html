@@ -22,7 +22,11 @@
     fbq('init', '949861250183804');
     fbq('track', 'PageView');
     var qualityVisitFired = false;
-    const currentPageUrl = window.location.pathname;
+    var currentPageUrl = window.location.pathname;
+    if (currentPageUrl.endsWith('/')) {
+      const strippedUrl = currentPageUrl.slice(0, -1);
+      currentPageUrl = strippedUrl;
+    }
     window.onload = () => {
       console.log('current page', currentPageUrl)
       const selfButton = document.getElementById('selfButton');
