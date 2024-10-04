@@ -21,14 +21,16 @@
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '949861250183804');
     fbq('track', 'PageView');
-    const currentPageUrl = window.location.href;
-    console.log('current page', currentPageUrl)
-    const homeButton = document.getElementById('homeButton');
-    homeButton.addEventListener('click', () => {
-      const url = e.target.getAttribute('href');
-      console.log('dest_url',url)
-      // fbq('track', 'ButtonClick');
-    });
+    window.onload = () => {
+      const currentPageUrl = window.location.href;
+      console.log('current page', currentPageUrl)
+      const homeButton = document.getElementById('homeButton');
+      homeButton.addEventListener('click', () => {
+        const url = e.target.getAttribute('href');
+        console.log('dest_url', url)
+        // fbq('track', 'ButtonClick');
+      });
+    }
     fbq('trackCustom', 'Quality Site Visit', {
       "event": "PageView",
       "rule": {
@@ -62,7 +64,7 @@
 
 <body>
   <h1>Meta Pixel Test</h1>
-  <a id="homeButton" href="/">Home</a>
+  <a id="homeButton" href="/">Home Updated</a>
 </body>
 
 </html>
