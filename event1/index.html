@@ -27,7 +27,7 @@
       const homeButton = document.getElementById('homeButton');
       homeButton.addEventListener('click', (event) => {
         event.preventDefault()
-        const url = e.target.getAttribute('href');
+        const url = event.target.getAttribute('href');
         console.log('dest_url', url)
         // fbq('track', 'ButtonClick');
       });
