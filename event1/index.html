@@ -21,42 +21,26 @@
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '949861250183804');
     fbq('track', 'PageView');
-    const currentPageUrl = window.location.href;
+    var qualityVisitFired = false;
+    const currentPageUrl = window.location.pathname;
     window.onload = () => {
       console.log('current page', currentPageUrl)
       const homeButton = document.getElementById('homeButton');
       homeButton.addEventListener('click', (event) => {
-        event.preventDefault()
-        const url = event.target.getAttribute('href');
-        console.log('dest_url', url)
-        // fbq('track', 'ButtonClick');
+        event.preventDefault();
+        const destinationURL = event.target.getAttribute('href');
+        if (!qualityVisitFired && destinationURL != currentPageUrl) {
+          fbq('trackCustom', 'Quality Site Visit');
+          qualityVisitFired = true;
+        }
       });
     }
-    fbq('trackCustom', 'Quality Site Visit', {
-      "event": "PageView",
-      "rule": {
-        "or": [
-          {
-            "and": [
-              {
-                "event": "PageView"
-              },
-              {
-                "parameter": "timeSpent",
-                "op": ">=",
-                "value": 10
-              }
-            ]
-          },
-          {
-            "event": "Click",
-            "parameter": "destinationURL",
-            "op": "!=",
-            "value": currentPageUrl
-          }
-        ]
+    setTimeout(() => {
+      if (!qualityVisitFired) {
+        fbq('trackCustom', 'Quality Site Visit');
+        qualityVisitFired = true;
       }
-    })
+    }, 10000);
   </script>
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=949861250183804&ev=PageView&noscript=1" /></noscript>
