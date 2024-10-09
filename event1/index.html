@@ -29,13 +29,13 @@
     }
     window.onload = () => {
       console.log('current page', currentPageUrl)
-      const selfButton = document.getElementById('selfButton');
-      selfButton.addEventListener('click', (event) => {
+      const homeButton = document.getElementById('home');
+      homeButton.addEventListener('click', (event) => {
         event.preventDefault();
         const destinationURL = event.target.getAttribute('href');
         console.log('destination url', destinationURL)
         if (!qualityVisitFired && destinationURL != currentPageUrl) {
-          fbq('trackCustom', 'Quality Site Visit');
+          fbq('trackCustom', 'Quality Site Visit2');
           qualityVisitFired = true;
         }
       });
@@ -64,7 +64,7 @@
 
 <body>
   <h1>Event 1</h1>
-  <a id="selfButton" href="/event1">Self</a>
+  <a id="home" href="/">Home</a>
   <a id="eventButton" href="/event2">Event 2</a>
 </body>
 
