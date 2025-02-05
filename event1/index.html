@@ -1,71 +1,167 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Meta Pixel Test with new Custom Event</title>
+
   <link rel="stylesheet" href="../style.css">
+
   <!-- Meta Pixel Code -->
+
   <script>
+
     !function (f, b, e, v, n, t, s) {
+
       if (f.fbq) return; n = f.fbq = function () {
+
         n.callMethod ?
+
           n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+
       };
+
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+
       n.queue = []; t = b.createElement(e); t.async = !0;
+
       t.src = v; s = b.getElementsByTagName(e)[0];
+
       s.parentNode.insertBefore(t, s)
+
     }(window, document, 'script',
+
       'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '949861250183804');
+
+    fbq('init', '283859598862258', {
+      em: 'email@email.com',
+      fn: 'first_name',
+      ln: 'last_name'
+    });
+
     fbq('track', 'PageView');
+
     var qualityVisitFired = false;
+
     var currentPageUrl = window.location.pathname;
+
     if (currentPageUrl.endsWith('/')) {
+
       const strippedUrl = currentPageUrl.slice(0, -1);
+
       currentPageUrl = strippedUrl;
+
     }
+
     window.onload = () => {
+
       console.log('current page', currentPageUrl)
+
       const homeButton = document.getElementById('home');
+
       homeButton.addEventListener('click', (event) => {
+
         event.preventDefault();
+
         const destinationURL = event.target.getAttribute('href');
+
         console.log('destination url', destinationURL)
+
         if (!qualityVisitFired && destinationURL != currentPageUrl) {
+
           fbq('trackCustom', 'Quality Site Visit2');
+
           qualityVisitFired = true;
+
         }
+
       });
+
       const eventButton = document.getElementById('eventButton');
+
       eventButton.addEventListener('click', (event) => {
+
         event.preventDefault();
+
         const destinationURL = event.target.getAttribute('href');
+
         console.log('destination url', destinationURL)
+
         if (!qualityVisitFired && destinationURL != currentPageUrl) {
+
           fbq('trackCustom', 'Quality Site Visit');
+
           qualityVisitFired = true;
+
         }
+
       });
+
     }
+
     setTimeout(() => {
+
       if (!qualityVisitFired) {
+
         fbq('trackCustom', 'Quality Site Visit');
+
         qualityVisitFired = true;
+
       }
+
     }, 10000);
+
   </script>
+
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=949861250183804&ev=PageView&noscript=1" /></noscript>
+
   <!-- End Meta Pixel Code -->
+
 </head>
 
 <body>
+
   <h1>Event 1</h1>
+
   <a id="home" href="/">Home</a>
+
   <a id="eventButton" href="/event2">Event 2</a>
+
+  <form id="purchase-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <input type="submit" value="Purchase">
+  </form>
+
+  <script>
+    const purchaseForm = document.getElementById('purchase-form');
+    purchaseForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      fbq('track', 'Purchase', {
+        currency: 'USD',
+        value: 10.99,
+        contents: [
+          {
+            id: 'product-123',
+            quantity: 1,
+            item_price: 10.99
+          }
+        ]
+      });
+      console.log(`Purchase event fired for ${name} (${email})`);
+    });
+  </script>
+
 </body>
 
 </html>
