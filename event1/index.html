@@ -40,7 +40,10 @@
 
     fbq('init', '949861250183804');
 
-    fbq('track', 'PageView');
+    fbq('track', 'PageView', {
+      em: "abcz@123.com",
+      fn: "fname"
+    });
 
 
 
@@ -55,7 +58,7 @@
 
 <body>
 
-  <h1>Event 1a</h1>
+  <h1>Event 1</h1>
 
   <a id="home" href="/">Home</a>
 
@@ -76,8 +79,6 @@
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value.toLowerCase();
       fbq('track', 'Purchase', {
-        em: email,
-        fn: name,
         currency: 'USD',
         value: 10.99,
         contents: [
@@ -95,5 +96,3 @@
 </body>
 
 </html>
-
-https://www.facebook.com/tr/?id=949861250183804&ev=Purchase&dl=https%3A%2F%2Facurt1.github.io%2Fevent1%2F&rl=https%3A%2F%2Fbusiness.facebook.com%2F&if=false&ts=1738855779757&cd[currency]=USD&cd[value]=10.99&cd[contents]=%5B%7B%22id%22%3A%22product-123%22%2C%22quantity%22%3A1%2C%22item_price%22%3A10.99%7D%5D&sw=1920&sh=1080&udff[fn]=89b3202d4ddf3f09b96854b17b9164322bd30ad63f26db0239e0b632e262fc04&udff[em]=b2cc51a82c2f356dd74c9bf097102e2c3fdc14cfd84daced7c722556b5bdf668&v=2.9.182&r=stable&ec=3&o=6174&fbp=fb.2.1738796003112.13813123082618241&ler=fb&cdl=API_unavailable&it=1738855770337&coo=false&rqm=GET
