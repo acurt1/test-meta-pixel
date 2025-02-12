@@ -3,58 +3,28 @@
 <html lang="en">
 
 <head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KHMLQPTS');</script>
+  <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Meta Pixel Test with new Custom Event</title>
+  <title>Meta Pixel Test GTM</title>
 
   <link rel="stylesheet" href="../style.css">
 
-  <!-- Meta Pixel Code -->
-
-  <script>
-
-    !function (f, b, e, v, n, t, s) {
-
-      if (f.fbq) return; n = f.fbq = function () {
-
-        n.callMethod ?
-
-          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-
-      };
-
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-
-      n.queue = []; t = b.createElement(e); t.async = !0;
-
-      t.src = v; s = b.getElementsByTagName(e)[0];
-
-      s.parentNode.insertBefore(t, s)
-
-    }(window, document, 'script',
-
-      'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '949861250183804',{
-      em: "abcz@123.com",
-      fn: "fname",
-      ph: 123456789
-    });
-
-    fbq('track', 'PageView');
-
-  </script>
-
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=949861250183804&ev=PageView&noscript=1" /></noscript>
-
-  <!-- End Meta Pixel Code -->
-
 </head>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHMLQPTS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 <body>
 
   <h1>Event 1a</h1>
@@ -77,21 +47,63 @@
       event.preventDefault();
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value.toLowerCase();
-      fbq('track', 'Purchase', {
-        currency: 'USD',
-        value: 10.99,
-        contents: [
-          {
-            id: 'product-123',
-            quantity: 1,
-            item_price: 10.99
-          }
-        ]
-      });
-      console.log(`Purchase event fired for ${name} (${email})`);
+      // fbq('track', 'Purchase', {
+      //   currency: 'USD',
+      //   value: 10.99,
+      //   contents: [
+      //     {
+      //       id: 'product-123',
+      //       quantity: 1,
+      //       item_price: 10.99
+      //     }
+      //   ]
+      // });
+      // console.log(`Purchase event fired for ${name} (${email})`);
     });
   </script>
 
 </body>
 
 </html>
+
+
+ <!-- Meta Pixel Code -->
+
+ <!-- <script>
+
+  !function (f, b, e, v, n, t, s) {
+
+    if (f.fbq) return; n = f.fbq = function () {
+
+      n.callMethod ?
+
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+
+    };
+
+    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+
+    n.queue = []; t = b.createElement(e); t.async = !0;
+
+    t.src = v; s = b.getElementsByTagName(e)[0];
+
+    s.parentNode.insertBefore(t, s)
+
+  }(window, document, 'script',
+
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '949861250183804',{
+    em: "abcz@123.com",
+    fn: "fname",
+    ph: 123456789
+  });
+
+  fbq('track', 'PageView');
+
+</script>
+
+<noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=949861250183804&ev=PageView&noscript=1" /></noscript> -->
+
+<!-- End Meta Pixel Code -->
